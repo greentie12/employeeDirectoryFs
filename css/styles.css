@@ -91,9 +91,10 @@ header h1 {
   padding: 10px;
   background: rgba(245, 245, 245, 0.9);
   border-radius: 0.25em;
-  border: 1px solid rgba(50, 50, 50, 0.3);
-  transition: 0.4s ease-out;
+  border: 1px solid rgba(50, 50, 50, 0.2);
+  transition: all 0.4s ease-out;
   overflow: hidden;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1);
 }
 
 .card-img {
@@ -248,7 +249,8 @@ header h1 {
 @media (min-width: 1024px) {
   .card:hover {
     background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    border: 1px solid rgba(50, 50, 50, 0.3);
+    box-shadow: 4px 4px 9px rgba(0, 0, 0, 0.2);
   }
 
   .card:hover .card-text {
