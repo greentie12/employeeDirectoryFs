@@ -18,6 +18,7 @@ retrieveEmployees(SEARCH_URL);
 async function retrieveEmployees(url) {
   const response = await fetch(url);
   const employeeData = await response.json();
+  console.log(employeeData);
 
   appendEmployees(employeeData.results);
 }
@@ -26,10 +27,10 @@ const appendEmployees = (employees) => {
   employeeArr = employees;
 
   employeeArr.forEach((employee, index) => {
-    let { name, email, location, picture } = employee;
-    let fullName = `${name.first} ${name.last}`;
-    let employeeLocation = `${location.city}, ${location.state}`;
-    let employeeCard = document.createElement("div");
+    const { name, email, location, picture } = employee;
+    const fullName = `${name.first} ${name.last}`;
+    const employeeLocation = `${location.city}, ${location.state}`;
+    const employeeCard = document.createElement("div");
 
     employeeCard.classList.add("card");
     employeeCard.setAttribute("data-index", `${index}`);

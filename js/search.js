@@ -2,7 +2,7 @@
  * form into the .search-container
  */
 const appendSearch = () => {
-  let form = document.createElement("form");
+  const form = document.createElement("form");
   form.action = "#";
   form.method = "get";
   form.insertAdjacentHTML(
@@ -29,9 +29,9 @@ const searchSubmit = document.querySelector(".search-submit");
  */
 function searchEmployees() {
   let data, txtValue;
-  let filter = searchInput.value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
-  let name = document.querySelectorAll(".card-name");
+  const filter = searchInput.value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  const name = document.querySelectorAll(".card-name");
 
   for (let i = 0; i < cards.length; i++) {
     data = cards[i];

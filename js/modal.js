@@ -1,7 +1,7 @@
 const body = document.querySelector("body");
 
 const displayModal = (index) => {
-  let {
+  const {
     name,
     dob,
     cell,
@@ -10,10 +10,24 @@ const displayModal = (index) => {
     picture,
   } = employeeArr[index];
 
-  let fullName = `${name.first} ${name.last}`;
-  let fullAddress = `${street.number} ${street.name}, ${state} ${postcode}`;
-  let formatDob = new Date(dob.date);
-  formatDob = `${formatDob.getMonth()}/${formatDob.getDate()}/${formatDob.getYear()}`;
+  const fullName = `${name.first} ${name.last}`;
+  const fullAddress = `${street.number} ${street.name}, ${state} ${postcode}`;
+
+  // formatted cell # to match (111) 111-1111
+  let cellArray = cell.split("");
+  cellArray[5] = " ";
+  let revisedCell = cellArray.join("");
+
+  // formatted dob to match MM/DD/YYYY
+  let formatDob = dob.date;
+  let monthAndDay = formatDob.substr(5, 6);
+  monthAndDay = monthAndDay.substr(0, 5);
+  let year = formatDob.substr(0, 4);
+
+  formatDob = `${monthAndDay}/${year}`;
+  formatDob = formatDob.split("");
+  formatDob[2] = "/";
+  formatDob = formatDob.join("");
 
   body.insertAdjacentHTML(
     "beforeend",
@@ -27,7 +41,7 @@ const displayModal = (index) => {
             <p class="modal-text">${email}</p>
             <p class="modal-text cap">${city}</p>
             <hr>
-            <p class="modal-text">${cell}</p>
+            <p class="modal-text">${revisedCell}</p>
             <p class="modal-text">${fullAddress}</p>
             <p class="modal-text">Birthday: ${formatDob}</p>
             <p id="index">${index}</p>
@@ -48,8 +62,8 @@ const displayModal = (index) => {
  * employee info */
 const mainEvent = (e) => {
   if (e.target !== gallery) {
-    let card = e.target.closest(".card");
-    let index = card.getAttribute("data-index");
+    const card = e.target.closest(".card");
+    const index = card.getAttribute("data-index");
     displayModal(index);
   }
 };
@@ -61,8 +75,8 @@ gallery.addEventListener("click", mainEvent);
  * the modal window -> the modal closes
  */
 body.onclick = function (e) {
-  let modalContainer = document.querySelector(".modal-container");
-  let modalCloseButton = document.getElementById("modal-close-btn");
+  const modalContainer = document.querySelector(".modal-container");
+  const modalCloseButton = document.getElementById("modal-close-btn");
   if (
     e.target === modalCloseButton ||
     e.target.textContent === "X" ||
@@ -76,22 +90,22 @@ body.onclick = function (e) {
 the repective employee is shown */
 window.onclick = function (e) {
   if (e.target.classList.contains("modal-prev")) {
-    let index = document.getElementById("index");
+    const index = document.getElementById("index");
     let value = index.textContent;
     value = Number(value);
     let prev = value - 1;
-    let modalContainer = document.querySelector(".modal-container");
+    const modalContainer = document.querySelector(".modal-container");
     body.removeChild(modalContainer);
     if (prev < 0) {
       prev = employeeArr.length - 1;
     }
     displayModal(prev);
   } else if (e.target.classList.contains("modal-next")) {
-    let index = document.getElementById("index");
+    const index = document.getElementById("index");
     let value = index.textContent;
     value = Number(value);
     let next = value + 1;
-    let modalContainer = document.querySelector(".modal-container");
+    const modalContainer = document.querySelector(".modal-container");
     body.removeChild(modalContainer);
     if (next > employeeArr.length - 1) {
       next = 0;
