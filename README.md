@@ -9,5 +9,5 @@ Browser based fictional employee search directory utlizing Random User Generator
   - Modal capabilies in modal.js
 
 * Structure, style and CSS
-  - Subtle box-shadow applied to the .card class
-  - box-shadow change applied on `.card:hover`
+  - Subtle *box-shadow* applied to the `.card` class
+  - *box-shadow* change applied on `.card:hover`
