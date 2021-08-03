@@ -1,3 +1,6 @@
+/** function to create and insert the
+ * form into the .search-container
+ */
 const appendSearch = () => {
   let form = document.createElement("form");
   form.action = "#";
@@ -14,9 +17,16 @@ const appendSearch = () => {
 
 appendSearch();
 
+/*DOM element variable iniatilized
+ *after the form has been inserted
+ */
 const searchInput = document.querySelector(".search-input");
 const searchSubmit = document.querySelector(".search-submit");
 
+/**
+ * Search employees using indexOf on the textContent
+ *of the .card-name and the searchInput as the argument
+ */
 function searchEmployees() {
   let data, txtValue;
   let filter = searchInput.value.toLowerCase();
