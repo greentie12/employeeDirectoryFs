@@ -8,7 +8,7 @@ const displayModal = (index) => {
     email,
     location: { city, street, state, postcode },
     picture,
-  } = studentArr[index];
+  } = employeeArr[index];
 
   let fullName = `${name.first} ${name.last}`;
   let fullAddress = `${street.number} ${street.name}, ${state} ${postcode}`;
@@ -22,7 +22,7 @@ const displayModal = (index) => {
     	<div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
           <div class="modal-info-container">
-            <img class="modal-img" src="${picture.large}" alt="profile picture">
+            <img class="modal-img" src="${picture.large}" alt="picture of ${fullName}">
             <h3 id="name" class="modal-name cap">${fullName}</h3>
             <p class="modal-text">${email}</p>
             <p class="modal-text cap">${city}</p>
@@ -45,7 +45,7 @@ const displayModal = (index) => {
 
 /** When the user clicks only inside the
  * .card class the modal opens with the
- * student info */
+ * employee info */
 const mainEvent = (e) => {
   if (e.target !== gallery) {
     let card = e.target.closest(".card");
@@ -73,7 +73,7 @@ body.onclick = function (e) {
 };
 
 /* When the user clicks "PREV" or "NEXT"
-the repective student is shown */
+the repective employee is shown */
 window.onclick = function (e) {
   if (e.target.classList.contains("modal-prev")) {
     let index = document.getElementById("index");
@@ -83,7 +83,7 @@ window.onclick = function (e) {
     let modalContainer = document.querySelector(".modal-container");
     body.removeChild(modalContainer);
     if (prev < 0) {
-      prev = studentArr.length - 1;
+      prev = employeeArr.length - 1;
     }
     displayModal(prev);
   } else if (e.target.classList.contains("modal-next")) {
@@ -93,7 +93,7 @@ window.onclick = function (e) {
     let next = value + 1;
     let modalContainer = document.querySelector(".modal-container");
     body.removeChild(modalContainer);
-    if (next > studentArr.length - 1) {
+    if (next > employeeArr.length - 1) {
       next = 0;
     }
     displayModal(next);

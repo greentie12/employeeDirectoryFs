@@ -9,34 +9,32 @@ const queryParameter =
 const SEARCH_URL = `https://randomuser.me/api/${queryParameter}`;
 
 const gallery = document.getElementById("gallery");
+const searchContainer = document.querySelector(".search-container");
 
-// console.log(SEARCH_URL);
+let employeeArr = [];
 
-let studentArr = [];
+retrieveEmployees(SEARCH_URL);
 
-retrieveStudents(SEARCH_URL);
-
-async function retrieveStudents(url) {
+async function retrieveEmployees(url) {
   const response = await fetch(url);
-  const studentData = await response.json();
-  console.log(studentData);
+  const employeeData = await response.json();
 
-  appendStudents(studentData.results);
+  appendEmployees(employeeData.results);
 }
 
-const appendStudents = (students) => {
-  studentArr = students;
+const appendEmployees = (employees) => {
+  employeeArr = employees;
 
-  studentArr.forEach((student, index) => {
-    let { name, email, location, picture } = student;
+  employeeArr.forEach((employee, index) => {
+    let { name, email, location, picture } = employee;
     let fullName = `${name.first} ${name.last}`;
-    let studentLocation = `${location.city}, ${location.state}`;
-    let studentCard = document.createElement("div");
+    let employeeLocation = `${location.city}, ${location.state}`;
+    let employeeCard = document.createElement("div");
 
-    studentCard.classList.add("card");
-    studentCard.setAttribute("data-index", `${index}`);
+    employeeCard.classList.add("card");
+    employeeCard.setAttribute("data-index", `${index}`);
 
-    studentCard.insertAdjacentHTML(
+    employeeCard.insertAdjacentHTML(
       "beforeend",
       `
 	  	<div class="card-img-container">
@@ -45,10 +43,10 @@ const appendStudents = (students) => {
 		<div class="card-info-container">
 			<h3 id="name" class="card-name cap">${fullName} </h3>
 			<p class="card-text">${email}</p>
-			<p class="card-text cap">${studentLocation}</p>
+			<p class="card-text cap">${employeeLocation}</p>
 		</div>
 	`
     );
-    gallery.appendChild(studentCard);
+    gallery.appendChild(employeeCard);
   });
 };
